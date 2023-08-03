@@ -1,14 +1,28 @@
 package baseball;
 
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Application {
 
-    public String compareComAndUser(Set<Integer> com, String user) {
+    public String compareComAndUser(Set<Integer> com, String userInputString) { // 스트라이크, 볼, 낫싱
     //user 문자열을 배열로 나눠 com과 비교해야
 
+        changeUserStringIntoNum(userInputString);
+        
+        return "";
+    }
+
+    public List<Integer> changeUserStringIntoNum(String userInputString) {
+
+        List<Integer> userNum = new ArrayList<>();
+
+        for (int un = 0; un < userInputString.length(); un++) {
+            char userInt = userInputString.charAt(un);
+            userNum.add(Character.getNumericValue(userInt));
+        }
+        System.out.println(userNum);
+
+        return userNum;
     }
 
     public boolean isInteger(String userInputNum) {
@@ -24,23 +38,22 @@ public class Application {
                 isNum = true;
             }
         }
-        System.out.println(isNum);
         return isNum;
     }
 
-    public String userNumberInput() { // 사용자가 입력한 숫자를 받는다.
+    public String userNumberInput() { // 사용자가 입력한 숫자를 받는다.(숫자 입력했는지 확인 후 예외처리)
 
         Scanner userInput = new Scanner(System.in);
 
         try {
 
-            String userInputNum = userInput.nextLine();
+            String userInputString = userInput.nextLine();
 
-            if (userInputNum.length() != 3 || isInteger(userInputNum)){
+            if (userInputString.length() != 3 || isInteger(userInputString)){
                 throw new IllegalArgumentException("잘못입력하셨습니다. 숫자 3자리를 입력해주세요.");
             }
 
-            return userInputNum;
+            return userInputString;
 
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
@@ -71,10 +84,10 @@ public class Application {
 
         System.out.println("숫자를 입력해주세요 : ");
 
-        String userNum = userNumberInput();
+        String userInputString = userNumberInput();
 
         //컴퓨터의 숫자와 유저의 숫자를 비교하는 메소드
-        compareComAndUser(comNums, userNum);
+        compareComAndUser(comNums, userInputString);
 
 
     }
