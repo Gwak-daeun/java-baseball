@@ -7,9 +7,43 @@ public class Application {
     public String compareComAndUser(Set<Integer> com, String userInputString) { // 스트라이크, 볼, 낫싱
     //user 문자열을 배열로 나눠 com과 비교해야
 
-        changeUserStringIntoNum(userInputString);
+        List<Integer> userNum = changeUserStringIntoNum(userInputString);
+
+        List<Integer> comNum = changeComSetIntoNum(com);
+
+//        List<String> resultWord = new ArrayList<>();
+
+        String[] resultWord = {"스트라이크", "볼", "낫싱"};
+
+        for (int userNumIdx = 0; userNumIdx < userNum.size(); userNumIdx++) {
+            for (int comIdx = 0; comIdx < comNum.size(); comIdx++) {
+                if (comNum.get(comIdx) == userNum.get(userNumIdx)) {
+                    if (comIdx == userNumIdx) { // 스트라이크인 경우
+//                        resultWord.add("스트라이크");
+                    }
+                    if (comIdx != userNumIdx) { // 볼인 경우
+
+                    }
+                } else { //낫싱인 경우
+
+                }
+            }
+        }
         
         return "";
+    }
+
+    public List<Integer> changeComSetIntoNum(Set<Integer> com) {
+
+        Iterator<Integer> comSet= com.iterator();
+
+        List<Integer> comNum = new ArrayList<>();
+
+        while (comSet.hasNext()) {
+            comNum.add(comSet.next());
+        }
+
+        return comNum;
     }
 
     public List<Integer> changeUserStringIntoNum(String userInputString) {
