@@ -87,7 +87,15 @@ public class Application {
 
     public void choiceRestartOrEndGame() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        
+        String userChoice = userInput.nextLine();
+
+        if (userChoice.equals("1")) {
+            Application application = new Application();
+            application.announceGame();
+        }
+        if (userChoice.equals("2")) {
+            System.exit(0);
+        }
 
     }
 
